@@ -6,6 +6,7 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 dotenv.config();
+require('./connectDB');
 
 app.use(express.json());
 app.listen(process.env.PORT, () => {
