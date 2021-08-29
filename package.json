@@ -1,0 +1,19 @@
+{
+  "name": "drigo-backend",
+  "version": "1.0.0",
+  "description": "Backend for Drigo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshsbais/drigo-backend.git"
+  },
+  "author": "HSB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshsbais/drigo-backend/issues"
+  },
+  "homepage": "https://github.com/harshsbais/drigo-backend#readme"
+}
