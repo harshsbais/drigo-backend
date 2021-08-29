@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/harshsbais/drigo-backend/issues"
   },
-  "homepage": "https://github.com/harshsbais/drigo-backend#readme"
+  "homepage": "https://github.com/harshsbais/drigo-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
 }
