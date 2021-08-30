@@ -17,6 +17,10 @@ const BusSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  timeTakenInMinutes: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Bus', BusSchema);
