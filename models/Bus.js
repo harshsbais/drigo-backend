@@ -13,7 +13,7 @@ const BusSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     required: true,
   },
-  prices: {
+  price: {
     type: Number,
     required: true,
   },
