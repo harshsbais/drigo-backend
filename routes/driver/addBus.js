@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Bus = require('../../models/Bus');
 
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
   const {
     source, timeTakenInMinutes, destination, price,
   } = req.body;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Bus = require('../../models/Bus');
 
-router.get('/get', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const buses = await Bus.findAll({ driver: req.body.driver.id });
     res.status(200).send({
