@@ -4,10 +4,10 @@ const {
   getBus, getSales, editBus, deleteBus, addBus,
 } = require('../controllers/driver.controller');
 
-router.get('/', verifyDriver, getBus);
-router.post('/', verifyDriver, addBus);
-router.put('/', verifyDriver, editBus);
-router.delete('/', verifyDriver, deleteBus);
+router.get('/bus', verifyDriver, getBus);
+router.post('/bus', verifyDriver, addBus);
+router.put('/bus', verifyDriver, editBus);
+router.delete('/bus', verifyDriver, deleteBus);
 router.get('/sales', verifyDriver, getSales);
 
 module.exports = router;
