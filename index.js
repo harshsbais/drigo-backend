@@ -12,6 +12,7 @@ const driverAuthRoute = require('./routes/auth/driverAuth');
 const driverRoute = require('./routes/driver.routes');
 const userRoute = require('./routes/user.routes');
 const busRoute = require('./routes/bus.routes');
+const placeRoute = require('./routes/place.routes');
 
 app.use(express.json());
 // Auth routes
@@ -21,6 +22,7 @@ app.use('/api/driver/auth', driverAuthRoute);
 app.use('/api/driver', driverRoute);
 app.use('/api/user', userRoute);
 app.use('/api/bus', busRoute);
+app.use('/api/place', placeRoute);
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
