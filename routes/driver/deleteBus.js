@@ -4,7 +4,7 @@ const Bus = require('../../models/Bus');
 router.delete('/', async (req, res) => {
   try {
     const bus = Bus.findOneAndDelete({ id: req.body.busID });
-    res.status(204).send({
+    res.status(200).send({
       success: true,
       message: 'Bus deleted successfully',
     });
