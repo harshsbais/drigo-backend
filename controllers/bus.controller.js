@@ -6,12 +6,12 @@ exports.addBus = async (req, res) => {
   } = req.body;
   try {
     const bus = new Bus({
-      source, timeTakenInMinutes, destination, price, driver: req.driver.id,
+      source, timeTakenInMinutes, destination, price, driver: req.body.driver.id,
     });
     const savedBus = await bus.save();
     res.status(200).send({
       success: true,
-      savedBus,
+      bus: savedBus,
     });
   } catch (err) {
     res.status(500).send({
@@ -23,7 +23,7 @@ exports.addBus = async (req, res) => {
 
 exports.deleteBus = async (req, res) => {
   try {
-    const bus = Bus.findOneAndDelete({ id: req.body.busID });
+    const bus = await Bus.findOneAndDelete({ id: req.body.busID });
     res.status(200).send({
       success: true,
       message: 'Bus deleted successfully',
@@ -38,7 +38,7 @@ exports.deleteBus = async (req, res) => {
 
 exports.getBus = async (req, res) => {
   try {
-    const buses = await Bus.findAll({ driver: req.body.driver.id });
+    const buses = await Bus.find({ driver: { $in: [req.body.driver.id] } });
     res.status(200).send({
       success: true,
       buses,
