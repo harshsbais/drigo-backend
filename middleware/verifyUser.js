@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
   }
   try {
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    const user = User.findOne({ verified });
+    const user = await User.findOne({ id: verified });
     req.user = user;
     next();
   } catch (err) {
