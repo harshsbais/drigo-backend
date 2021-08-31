@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const Purchase = require('../../models/Purchase');
 
-router.get('/sales', async (req, res) => {
+router.get('/purchases', async (req, res) => {
   try {
-    let sales;
+    let purchases;
     if (req.body.busID) {
-      sales = await Purchase.findAll({ bus: req.body.busID });
+      purchases = await Purchase.findAll({ bus: req.body.busID });
     } else {
-      sales = await Purchase.findAll({ driver: req.body.driver.id });
+      purchases = await Purchase.findAll({ user: req.body.user.id });
     }
     res.status(200).send({
       success: true,
-      sales,
+      purchases,
     });
   } catch (err) {
     res.status(500).send({
