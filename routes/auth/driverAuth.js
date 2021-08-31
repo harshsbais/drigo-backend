@@ -25,6 +25,7 @@ router.post('/login', async (req, res) => {
     res.status(200).send({
       success: true,
       name: driver.name,
+      email: driver.email,
       token,
     });
   } catch (err) {
