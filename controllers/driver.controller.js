@@ -18,7 +18,7 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const savedDriver = await Driver.findOneAndUpdate({ id: req.body.id }, req.body);
+    const savedDriver = await Driver.findOneAndUpdate({ id: req.body.busID }, req.body);
     res.status(200).send({
       success: true,
       savedDriver,
