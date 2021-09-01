@@ -34,9 +34,9 @@ exports.getPurchases = async (req, res) => {
   try {
     let purchases;
     if (req.body.busID) {
-      purchases = await Purchase.findAll({ bus: req.body.busID });
+      sales = await Purchase.find({ bus: { $in: [req.body.busID] } }).populate('customer driver bus');
     } else {
-      purchases = await Purchase.findAll({ user: req.body.user.id });
+      sales = await Purchase.find({ user: { $in: [req.body.user.id] } }).populate('customer driver bus');
     }
     res.status(200).send({
       success: true,
