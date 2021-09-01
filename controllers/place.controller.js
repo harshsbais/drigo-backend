@@ -2,7 +2,7 @@ const Place = require('../models/Place');
 
 exports.addPlace = async (req, res) => {
   try {
-    const savedPlace = await Place.findOneAndUpdate({ name: req.body.name }, { new: true, upsert: true });
+    const savedPlace = await Place.findOneAndUpdate({ name: req.body.name }, { name: req.body.name }, { new: true, upsert: true });
     res.status(200).send({
       success: true,
       message: 'Place saved successfully',
