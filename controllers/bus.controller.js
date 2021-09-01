@@ -38,7 +38,7 @@ exports.deleteBus = async (req, res) => {
 
 exports.getBus = async (req, res) => {
   try {
-    const buses = await Bus.find({ driver: { $in: [req.body.driver.id] } });
+    const buses = await Bus.find({ driver: { $in: [req.body.driver.id] } }).populate('driver source destination');
     res.status(200).send({
       success: true,
       buses,

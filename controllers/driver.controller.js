@@ -35,7 +35,7 @@ exports.getSales = async (req, res) => {
   try {
     let sales;
     if (req.body.busID) {
-      sales = await Purchase.findAll({ bus: req.body.busID });
+      sales = await Purchase.findAll({ bus: req.body.busID }).populate('customer driver bus');
     } else {
       sales = await Purchase.findAll({ driver: req.body.driver.id });
     }
