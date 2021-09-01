@@ -27,9 +27,8 @@ const swaggerOptions = {
       servers: ['http://localhost:8000'],
     },
   },
-  apis: ['app.js', './routes/**/*.routes.js', './routes/*.routes.js'],
+  apis: [`${__dirname}/routes/**/*.js`],
 };
-
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use(express.json());
 // Docs route
