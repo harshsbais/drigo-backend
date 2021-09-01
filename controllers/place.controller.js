@@ -18,3 +18,19 @@ exports.addPlace = async (req, res) => {
     });
   }
 };
+
+exports.getPlaces = async (req, res) => {
+  try {
+    const places = await Place.find({});
+    res.status(200).send({
+      success: true,
+      message: 'Place saved successfully',
+      places,
+    });
+  } catch (err) {
+    res.status(500).send({
+      success: false,
+      message: err.message,
+    });
+  }
+};
