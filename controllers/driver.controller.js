@@ -35,7 +35,7 @@ exports.getSales = async (req, res) => {
   try {
     let sales;
     if (req.body.busID) {
-      sales = await Purchase.find({ bus: { $in: [req.body.busID] } }).populate('customer driver bus');
+      sales = await Purchase.find({ $and: [{ bus: { $in: [req.body.busID] } }, { driver: { $in: [req.body.driver.id] } }] }).populate('customer driver bus');
     } else {
       sales = await Purchase.find({ driver: { $in: [req.body.driver.id] } }).populate('customer driver bus');
     }
