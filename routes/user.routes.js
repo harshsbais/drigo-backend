@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const verifyUser = require('../middleware/verifyUser');
-const { getProfile, updateProfile, getPurchases } = require('../controllers/user.controller');
+const {
+  getProfile, updateProfile, getPurchases, getBusByUser,
+} = require('../controllers/user.controller');
 
 /**
  * @swagger
@@ -16,6 +18,7 @@ const { getProfile, updateProfile, getPurchases } = require('../controllers/user
 
 router.get('/profile', verifyUser, getProfile);
 router.put('/profile', updateProfile);
+router.get('/buses', verifyUser, getBusByUser);
 router.get('/purchases', verifyUser, getPurchases);
 
 module.exports = router;
