@@ -21,7 +21,6 @@ exports.getPlaces = async (req, res) => {
     const places = await Place.find({});
     res.status(200).send({
       success: true,
-      message: 'Place saved successfully',
       places,
     });
   } catch (err) {

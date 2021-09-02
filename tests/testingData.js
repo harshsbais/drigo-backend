@@ -19,3 +19,7 @@ exports.editBusData = {
   price: 450,
   timeTakenInMinutes: 350,
 };
+
+exports.addPlaceData = {
+  name: 'Agra',
+};
