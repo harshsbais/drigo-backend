@@ -64,6 +64,7 @@ exports.getBusByUser = async (req, res) => {
       },
     },
   ]);
+  await Bus.populate(buses, { path: 'driver source destination' });
   res.status(200).send({
     buses,
   });
