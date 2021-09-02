@@ -54,10 +54,10 @@ exports.getBus = async (req, res) => {
 exports.editBus = async (req, res) => {
   try {
     // new:true is used here since findOneAndupdate by default returns old value
-    const savedBus = await Bus.findOneAndUpdate({ id: req.body.id }, req.body, { new: true });
+    const bus = await Bus.findOneAndUpdate({ id: req.body.id }, req.body, { new: true });
     res.status(200).send({
       success: true,
-      savedBus,
+      bus,
     });
   } catch (err) {
     res.status(500).send({
