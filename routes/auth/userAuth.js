@@ -7,7 +7,7 @@ const UserSchema = require('../../models/User');
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await UserSchema.findOne({ email });
+    const user = await UserSchema.findOne({ email }).select('password');
     if (!user) {
       res.status(404).send({
         success: false,

@@ -7,7 +7,7 @@ const DriverSchema = require('../../models/Driver');
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    const driver = await DriverSchema.findOne({ email });
+    const driver = await DriverSchema.findOne({ email }).select('password');
     if (!driver) {
       res.status(404).send({
         success: false,
