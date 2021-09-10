@@ -6,7 +6,7 @@ const testingData = require('./testingData');
 chai.should();
 chai.use(chaiHttp);
 
-describe('DRIVER', () => {
+describe('BUS', () => {
   let token;
   let busID;
   let numberOfBuses;
