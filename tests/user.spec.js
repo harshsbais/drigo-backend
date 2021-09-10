@@ -56,4 +56,21 @@ describe('USER LOGIN', () => {
         done();
       });
   });
+  it('It should update the password', (done) => {
+    chai
+      .request(server)
+      .put('/api/user/profile')
+      .set('content-type', 'application/json')
+      .set('Authorization', token)
+      .set('accept', 'application/json')
+      .send(JSON.stringify(testingData.updatePassword))
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success').eq(true);
+        res.body.should.have.property('user');
+        res.body.user.should.be.a('object');
+        done();
+      });
+  });
 });

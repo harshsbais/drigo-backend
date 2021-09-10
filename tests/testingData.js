@@ -27,3 +27,8 @@ exports.addPlaceData = {
 exports.editProfile = {
   name: 'Raju',
 };
+
+exports.updatePassword = {
+  oldPassword: '1234abcd',
+  newPassword: '1234abcd',
+};

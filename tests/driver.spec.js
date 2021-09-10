@@ -57,4 +57,21 @@ describe('DRIVER', () => {
         done();
       });
   });
+  it('It should update the password', (done) => {
+    chai
+      .request(server)
+      .put('/api/driver/profile')
+      .set('content-type', 'application/json')
+      .set('Authorization', token)
+      .set('accept', 'application/json')
+      .send(JSON.stringify(testingData.updatePassword))
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success').eq(true);
+        res.body.should.have.property('driver');
+        res.body.driver.should.be.a('object');
+        done();
+      });
+  });
 });
