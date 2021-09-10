@@ -6,7 +6,7 @@ exports.addBus = async (req, res) => {
   } = req.body;
   try {
     const bus = new Bus({
-      source, timeTakenInMinutes, destination, price, driver: req.body.driver.id,
+      source, timeTakenInMinutes, destination, price, driver: req.driver.id,
     });
     const savedBus = await bus.save();
     res.status(200).send({
@@ -38,7 +38,7 @@ exports.deleteBus = async (req, res) => {
 
 exports.getBus = async (req, res) => {
   try {
-    const buses = await Bus.find({ driver: { $in: [req.body.driver.id] } }).populate('driver source destination');
+    const buses = await Bus.find({ driver: { $in: [req.driver.id] } }).populate('driver source destination');
     res.status(200).send({
       success: true,
       buses,

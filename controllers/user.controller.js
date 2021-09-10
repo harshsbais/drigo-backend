@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const User = require('../models/User');
 const Purchase = require('../models/Purchase');
 const Bus = require('../models/Bus');
@@ -19,10 +18,10 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const savedUser = await User.findOneAndUpdate({ id: req.body.id }, req.body);
+    const savedUser = await User.findOneAndUpdate({ id: req.user.id }, req.body);
     res.status(200).send({
       success: true,
-      savedUser,
+      user: savedUser,
     });
   } catch (err) {
     res.status(500).send({
@@ -36,9 +35,9 @@ exports.getPurchases = async (req, res) => {
   try {
     let purchases;
     if (req.body.busID) {
-      purchases = await Purchase.find({ $and: [{ bus: { $in: [req.body.busID] } }, { customer: { $in: [req.body.user.id] } }] }).populate('customer driver bus');
+      purchases = await Purchase.find({ $and: [{ bus: { $in: [req.body.busID] } }, { customer: { $in: [req.user.id] } }] }).populate('customer driver bus');
     } else {
-      purchases = await Purchase.find({ user: { $in: [req.body.user.id] } }).populate('customer driver bus');
+      purchases = await Purchase.find({ user: { $in: [req.user.id] } }).populate('customer driver bus');
     }
     res.status(200).send({
       success: true,
