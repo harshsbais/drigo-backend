@@ -47,7 +47,7 @@ describe('DRIVER', () => {
       .set('content-type', 'application/json')
       .set('Authorization', token)
       .set('accept', 'application/json')
-      .send(JSON.stringify(testingData.editDriverProfile))
+      .send(JSON.stringify(testingData.editProfile))
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');

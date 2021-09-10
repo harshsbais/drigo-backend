@@ -23,3 +23,7 @@ exports.editBusData = {
 exports.addPlaceData = {
   name: 'Agra',
 };
+
+exports.editProfile = {
+  name: 'Raju',
+};
