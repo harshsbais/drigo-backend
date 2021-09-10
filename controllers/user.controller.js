@@ -30,6 +30,9 @@ exports.updateProfile = async (req, res) => {
           message: 'Invalid Old Password',
         });
       } else {
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(user.password, salt);
+        req.body.password = hashPassword;
         const savedUser = await User.findOneAndUpdate({ id: user.id }, req.body);
         res.status(200).send({
           success: true,

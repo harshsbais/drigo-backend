@@ -29,6 +29,9 @@ exports.updateProfile = async (req, res) => {
           message: 'Invalid Old Password',
         });
       } else {
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(driver.password, salt);
+        req.body.password = hashPassword;
         const savedDriver = await Driver.findOneAndUpdate({ id: driver.id }, req.body);
         res.status(200).send({
           success: true,
