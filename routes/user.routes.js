@@ -17,7 +17,7 @@ const {
  */
 
 router.get('/profile', verifyUser, getProfile);
-router.put('/profile', verifyUser, updateProfile);
+router.put('/profile', updateProfile);
 router.get('/buses', verifyUser, getBusByUser);
 router.get('/purchases', verifyUser, getPurchases);
 
