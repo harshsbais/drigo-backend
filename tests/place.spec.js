@@ -13,10 +13,6 @@ describe('PLACE API', () => {
       .set('content-type', 'application/json')
       .set('accept', 'application/json')
       .end((err, res) => {
-        if (err) {
-          console.log('got err getting place', err);
-          done();
-        }
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('success').eq(true);
@@ -33,10 +29,6 @@ describe('PLACE API', () => {
       .set('accept', 'application/json')
       .send(JSON.stringify(testingData.addPlaceData))
       .end((err, res) => {
-        if (err) {
-          console.log('got err adding place', err);
-          done();
-        }
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('success').eq(true);

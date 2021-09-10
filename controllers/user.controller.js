@@ -22,10 +22,8 @@ exports.updateProfile = async (req, res) => {
   try {
     const token = req.header('Authorization');
     const user = await getUserObjectWithPassword(token);
-    console.log(req.body);
     if (req.body.password) {
       const validPassword = await bcrypt.compare(req.body.oldPassword, user.password);
-      console.log('here', validPassword);
       if (!validPassword) {
         res.status(401).send({
           success: false,

@@ -20,7 +20,6 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const token = req.header('Authorization');
-    console.log(req.body);
     const driver = await getDriverObjectWithPassword(token);
     if (req.body.password) {
       const validPassword = await bcrypt.compare(req.body.oldPassword, driver.password);

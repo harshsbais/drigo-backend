@@ -3,7 +3,6 @@ const User = require('../models/User');
 const Driver = require('../models/Driver');
 
 const getUserObjectWithPassword = async (token) => {
-  console.log('token is here', token);
   if (!token) {
     return false;
   }
