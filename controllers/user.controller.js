@@ -1,6 +1,8 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Purchase = require('../models/Purchase');
 const Bus = require('../models/Bus');
+const { getUserObjectWithPassword } = require('../helpers/auth.helper');
 
 exports.getProfile = async (req, res) => {
   try {
@@ -18,11 +20,31 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const savedUser = await User.findOneAndUpdate({ id: req.user.id }, req.body);
-    res.status(200).send({
-      success: true,
-      user: savedUser,
-    });
+    const token = req.header('Authorization');
+    const user = await getUserObjectWithPassword(token);
+    console.log(req.body);
+    if (req.body.password) {
+      const validPassword = await bcrypt.compare(req.body.oldPassword, user.password);
+      console.log('here', validPassword);
+      if (!validPassword) {
+        res.status(401).send({
+          success: false,
+          message: 'Invalid Old Password',
+        });
+      } else {
+        const savedUser = await User.findOneAndUpdate({ id: user.id }, req.body);
+        res.status(200).send({
+          success: true,
+          user: savedUser,
+        });
+      }
+    } else {
+      const savedUser = await User.findOneAndUpdate({ id: user.id }, req.body);
+      res.status(200).send({
+        success: true,
+        user: savedUser,
+      });
+    }
   } catch (err) {
     res.status(500).send({
       success: false,

@@ -1,5 +1,7 @@
+const bcrypt = require('bcryptjs');
 const Purchase = require('../models/Purchase');
 const Driver = require('../models/Driver');
+const { getDriverObjectWithPassword } = require('../helpers/auth.helper');
 
 exports.getProfile = async (req, res) => {
   try {
@@ -17,11 +19,30 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const savedDriver = await Driver.findOneAndUpdate({ id: req.driver.id }, req.body);
-    res.status(200).send({
-      success: true,
-      driver: savedDriver,
-    });
+    const token = req.header('Authorization');
+    console.log(req.body);
+    const driver = await getDriverObjectWithPassword(token);
+    if (req.body.password) {
+      const validPassword = await bcrypt.compare(req.body.oldPassword, driver.password);
+      if (!validPassword) {
+        res.status(401).send({
+          success: false,
+          message: 'Invalid Old Password',
+        });
+      } else {
+        const savedDriver = await Driver.findOneAndUpdate({ id: driver.id }, req.body);
+        res.status(200).send({
+          success: true,
+          driver: savedDriver,
+        });
+      }
+    } else {
+      const savedDriver = await Driver.findOneAndUpdate({ id: driver.id }, req.body);
+      res.status(200).send({
+        success: true,
+        driver: savedDriver,
+      });
+    }
   } catch (err) {
     res.status(500).send({
       success: false,
