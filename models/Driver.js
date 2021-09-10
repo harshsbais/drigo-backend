@@ -9,6 +9,7 @@ const DriverSchema = new mongoose.Schema({
     type: String,
     required: true,
     match: [/^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'Please fill a valid email address'],
+    select: false,
   },
   password: {
     type: String,
