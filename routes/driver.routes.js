@@ -5,7 +5,7 @@ const {
 } = require('../controllers/driver.controller');
 
 router.get('/profile', verifyDriver, getProfile);
-router.put('/profile', updateProfile);
+router.put('/profile', verifyDriver, updateProfile);
 router.get('/sales', verifyDriver, getSales);
 
 module.exports = router;
